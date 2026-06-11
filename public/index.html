@@ -1,3 +1,5 @@
+$ head -400 /home/user/vm2026/website/public/index.html
+
 <!DOCTYPE html>
 <html lang="da">
 <head>
@@ -126,6 +128,63 @@ nav{background:var(--blue);padding:0 2rem;display:flex;align-items:center;justif
 .alert{padding:12px 16px;border-radius:8px;font-size:14px;margin-bottom:1rem}
 .alert-error{background:#fef2f2;color:#dc2626;border:1px solid #fecaca}
 .alert-success{background:#f0fdf4;color:#16a34a;border:1px solid #bbf7d0}
+/* Oversigt tab */
+.oversigt-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--radius);border:1px solid var(--border)}
+.oversigt-table{border-collapse:collapse;font-size:12px;white-space:nowrap}
+.oversigt-table th,.oversigt-table td{border:1px solid var(--border);padding:0}
+.ot-match-head{position:sticky;left:0;z-index:3;background:var(--blue);color:var(--white);font-size:11px;font-weight:600;letter-spacing:1px;padding:8px 12px;min-width:160px}
+.ot-name-head{background:var(--blue);color:var(--white);font-size:11px;font-weight:600;padding:6px 8px;text-align:center;min-width:52px;line-height:1.3}
+.ot-name-first{display:block;font-size:10px;opacity:.8}
+.ot-name-last{display:block;font-size:12px}
+.ot-group-sep{position:sticky;left:0;z-index:2;background:var(--blue3);color:var(--blue);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px}
+.ot-group-sep-full{background:var(--blue3)}
+.ot-match-cell{position:sticky;left:0;z-index:2;background:var(--white);font-size:12px;font-weight:500;padding:6px 10px;min-width:160px;border-right:2px solid var(--border)}
+.ot-match-cell.has-result{background:#f0fdf4}
+.ot-result-badge{display:inline-block;margin-left:6px;background:var(--blue);color:var(--white);font-size:10px;font-weight:700;padding:1px 5px;border-radius:4px}
+.ot-tip-cell{text-align:center;width:44px;min-width:44px;font-size:12px;font-weight:700;color:var(--white);padding:6px 4px}
+.ot-tip-cell.t1{background:var(--blue)}
+.ot-tip-cell.tx{background:var(--gold)}
+.ot-tip-cell.t2{background:var(--blue2)}
+.ot-tip-cell.empty{background:var(--off);color:var(--muted)}
+.ot-tip-cell.correct{box-shadow:inset 0 0 0 2px #16a34a}
+/* TV tab */
+#section-tv{background:var(--off);min-height:100vh;padding:0}
+.tv-layout{display:flex;height:100vh;overflow:hidden}
+.tv-left{width:320px;min-width:320px;background:var(--white);border-right:2px solid var(--border);display:flex;flex-direction:column;padding:20px 16px;overflow:hidden}
+.tv-right{flex:1;overflow:hidden;display:flex;flex-direction:column;padding:16px}
+.tv-logo{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--blue);letter-spacing:1px;line-height:1.1;margin-bottom:4px}
+.tv-logo span{color:var(--gold)}
+.tv-clock{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--blue);letter-spacing:2px;line-height:1}
+.tv-clock-date{font-size:13px;color:var(--muted);margin-bottom:12px;font-weight:500}
+.tv-section-title{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--blue);letter-spacing:1px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.tv-lb{flex:1;overflow-y:auto;overflow-x:hidden}
+.tv-lb-row{display:grid;grid-template-columns:44px 1fr 60px;align-items:center;padding:6px 8px;border-bottom:1px solid var(--border);border-radius:4px}
+.tv-lb-row.tv-top1{background:linear-gradient(90deg,#fffbeb,var(--white))}
+.tv-lb-row.tv-top2{background:linear-gradient(90deg,#f8faff,var(--white))}
+.tv-lb-row.tv-top3{background:linear-gradient(90deg,#fff7f0,var(--white))}
+.tv-lb-pos{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--muted);text-align:center}
+.tv-lb-pos.p1{color:#d97706}.tv-lb-pos.p2{color:#94a3b8}.tv-lb-pos.p3{color:#c2734a}
+.tv-lb-name{font-size:15px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tv-lb-pts{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--gold);text-align:right;letter-spacing:1px}
+.tv-updated{font-size:11px;color:var(--muted);margin-top:8px;text-align:center}
+.tv-right-title{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--blue);letter-spacing:1px;margin-bottom:8px}
+.tv-table-wrap{flex:1;overflow:auto}
+.tv-table{border-collapse:collapse;font-size:11px;white-space:nowrap}
+.tv-table th,.tv-table td{border:1px solid var(--border);padding:0}
+.tv-match-head{position:sticky;left:0;z-index:3;background:var(--blue);color:var(--white);font-size:10px;font-weight:600;padding:5px 8px;min-width:130px}
+.tv-name-head{background:var(--blue);color:var(--white);font-size:9px;font-weight:600;padding:4px 5px;text-align:center;min-width:40px;line-height:1.2}
+.tv-name-first{display:block;opacity:.8}
+.tv-group-sep-full{background:var(--blue3)}
+.tv-group-sep{position:sticky;left:0;z-index:2;background:var(--blue3);color:var(--blue);font-size:9px;font-weight:700;letter-spacing:2px;padding:3px 8px}
+.tv-match-cell{position:sticky;left:0;z-index:2;background:var(--white);font-size:11px;font-weight:500;padding:4px 8px;min-width:130px;border-right:2px solid var(--border)}
+.tv-match-cell.has-result{background:#f0fdf4}
+.tv-tip-cell{text-align:center;width:36px;min-width:36px;font-size:11px;font-weight:700;color:var(--white);padding:4px 2px}
+.tv-tip-cell.t1{background:var(--blue)}
+.tv-tip-cell.tx{background:var(--gold)}
+.tv-tip-cell.t2{background:var(--blue2)}
+.tv-tip-cell.empty{background:var(--off);color:var(--muted)}
+.tv-tip-cell.correct{box-shadow:inset 0 0 0 2px #16a34a}
+.tv-result-badge{display:inline-block;margin-left:4px;background:var(--blue);color:var(--white);font-size:9px;font-weight:700;padding:1px 4px;border-radius:3px}
 @media(max-width:600px){
   .match-row{grid-template-columns:1fr auto 1fr;gap:.25rem}
   .match-team{font-size:12px}.tip-btn{width:28px;height:28px;font-size:11px}
@@ -143,6 +202,8 @@ nav{background:var(--blue);padding:0 2rem;display:flex;align-items:center;justif
     <a onclick="showSection('forside')" class="active" id="nav-forside">Forside</a>
     <a onclick="showSection('tips')" id="nav-tips">Tips</a>
     <a onclick="showSection('pointtavle')" id="nav-pointtavle">Pointtavle</a>
+    <a onclick="showSection('oversigt')" id="nav-oversigt">Oversigt</a>
+    <a onclick="showSection('tv')" id="nav-tv">📺 TV</a>
   </div>
 </nav>
 
@@ -152,7 +213,7 @@ nav{background:var(--blue);padding:0 2rem;display:flex;align-items:center;justif
   <p>USA · Canada · Mexico · 11. juni – 27. juni</p>
   <div class="hero-meta">
     <div class="hero-meta-item"><div class="val">72</div><div class="lbl">Kampe</div></div>
-    <div class="hero-meta-item"><div class="val">50</div><div class="lbl">Kr. at deltage</div></div>
+    <div class="hero-meta-item"><div class="val">100</div><div class="lbl">Kr. at deltage</div></div>
     <div class="hero-meta-item"><div class="val">3</div><div class="lbl">Præmier</div></div>
     <div class="hero-meta-item"><div class="val" id="countdown-days">--</div><div class="lbl">Dage til VM</div></div>
   </div>
@@ -161,7 +222,7 @@ nav{background:var(--blue);padding:0 2rem;display:flex;align-items:center;justif
 <!-- FORSIDE -->
 <div class="section active container" id="section-forside">
   <div class="deadline-banner">
-    <div><div class="d-label">Deadline for tips</div><div class="d-val">torsdag 11. juni kl. 14:00</div></div>
+    <div><div class="d-label">Deadline for tips</div><div class="d-val">Onsdag 11. juni kl. 14:00</div></div>
     <div><div class="d-label">Betaling · MobilePay</div><div class="d-val">7465AU</div></div>
   </div>
   <div class="steps">
@@ -245,6 +306,33 @@ nav{background:var(--blue);padding:0 2rem;display:flex;align-items:center;justif
   </div>
 </div>
 
+<!-- OVERSIGT -->
+<div class="section container" id="section-oversigt" style="max-width:100%;padding:2rem 1rem">
+  <div class="pt-header">
+    <div class="pt-title">Tips Oversigt</div>
+    <div class="pt-live">Live</div>
+  </div>
+  <div id="oversigt-table-wrap"><div class="loading"><span class="spinner"></span>Henter data...</div></div>
+</div>
+
+<!-- TV -->
+<div class="section" id="section-tv">
+  <div class="tv-layout">
+    <div class="tv-left">
+      <div class="tv-logo">Chr. <span>Olesen</span><br>VM 2026</div>
+      <div class="tv-clock" id="tv-clock">--:--:--</div>
+      <div class="tv-clock-date" id="tv-clock-date"></div>
+      <div class="tv-section-title">Pointtavle <span class="pt-live">Live</span></div>
+      <div class="tv-lb" id="tv-lb"><div class="loading"><span class="spinner"></span></div></div>
+      <div class="tv-updated" id="tv-updated"></div>
+    </div>
+    <div class="tv-right">
+      <div class="tv-right-title">Tips Oversigt</div>
+      <div class="tv-table-wrap" id="tv-table-wrap"><div class="loading"><span class="spinner"></span>Henter data...</div></div>
+    </div>
+  </div>
+</div>
+
 <script>
 const MATCHES = [
   {id:1,g:'A',d:'11/6',h:'Mexico',a:'Sydafrika'},
@@ -312,6 +400,8 @@ const MATCHES = [
   {id:63,g:'K',d:'23/6',h:'Portugal',a:'Usbekistan'},
   {id:64,g:'K',d:'23/6',h:'Colombia',a:'Congo DR'},
   {id:65,g:'K',d:'27/6',h:'Colombia',a:'Portugal'},
+  Bash
+tail -391 /home/user/vm2026/website/public/index.html
   {id:66,g:'K',d:'27/6',h:'Congo DR',a:'Usbekistan'},
   {id:67,g:'L',d:'17/6',h:'England',a:'Kroatien'},
   {id:68,g:'L',d:'17/6',h:'Ghana',a:'Panama'},
@@ -324,13 +414,30 @@ const MATCHES = [
 let tips = {};
 let cachedResults = {};
 
+let tvRefreshInterval = null;
+
 function showSection(id) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.getElementById('section-' + id).classList.add('active');
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   const nav = document.getElementById('nav-' + id);
   if (nav) nav.classList.add('active');
+
+  // Hide nav on TV tab, restore on others
+  const navEl = document.querySelector('nav');
+  const heroEl = document.querySelector('.hero');
+  if (id === 'tv') {
+    navEl.style.display = 'none';
+    if (heroEl) heroEl.style.display = 'none';
+    startTV();
+  } else {
+    navEl.style.display = '';
+    if (heroEl) heroEl.style.display = '';
+    stopTV();
+  }
+
   if (id === 'pointtavle') loadLeaderboard();
+  if (id === 'oversigt') loadOversigt();
   window.scrollTo(0, 0);
 }
 
@@ -533,6 +640,152 @@ function countdown() {
   const vm = new Date('2026-06-11T21:00:00');
   const diff = Math.ceil((vm - new Date()) / 86400000);
   document.getElementById('countdown-days').textContent = diff > 0 ? diff : '🎉';
+}
+
+// ---- Shared helpers ----
+
+function buildTipCell(tip, result, cssPrefix) {
+  const p = cssPrefix || 'ot';
+  if (!tip) return `<td class="${p}-tip-cell empty">—</td>`;
+  const cls = tip === '1' ? 't1' : tip === 'X' ? 'tx' : 't2';
+  const correct = result && tip === result ? ' correct' : '';
+  return `<td class="${p}-tip-cell ${cls}${correct}">${tip}</td>`;
+}
+
+function buildOversigtTable(participants, results, cssPrefix, matchHeadClass, nameCls) {
+  const p = cssPrefix || 'ot';
+  const mh = matchHeadClass || 'ot-match-head';
+  const nc = nameCls || 'ot-name-head';
+  const sorted = [...participants].sort((a, b) => b.points - a.points);
+
+  let html = `<table class="${p}-table"><thead><tr>`;
+  html += `<th class="${mh}">Kamp</th>`;
+  sorted.forEach(par => {
+    const parts = par.name.split(' ');
+    const first = parts[0] || '';
+    const last = parts.slice(1).join(' ') || '';
+    html += `<th class="${nc}"><span class="${p}-name-first">${first}</span><span>${last}</span></th>`;
+  });
+  html += '</tr></thead><tbody>';
+
+  let curG = '';
+  MATCHES.forEach(m => {
+    if (m.g !== curG) {
+      curG = m.g;
+      html += `<tr class="${p}-group-sep-full"><td class="${p}-group-sep" colspan="${sorted.length + 1}">Gruppe ${m.g}</td></tr>`;
+    }
+    const res = results[m.id] || '';
+    const hasCls = res ? ' has-result' : '';
+    const resBadge = res ? `<span class="${p}-result-badge">${res}</span>` : '';
+    html += `<tr><td class="${p}-match-cell${hasCls}">${m.d} ${m.h} – ${m.a}${resBadge}</td>`;
+    sorted.forEach(par => {
+      const tip = par.tips ? par.tips[m.id] : null;
+      html += buildTipCell(tip, res, p);
+    });
+    html += '</tr>';
+  });
+
+  html += '</tbody></table>';
+  return html;
+}
+
+// ---- Oversigt tab ----
+
+async function loadOversigt() {
+  const wrap = document.getElementById('oversigt-table-wrap');
+  wrap.innerHTML = '<div class="loading"><span class="spinner"></span>Henter data...</div>';
+  try {
+    const [pRes, rRes] = await Promise.all([
+      fetch('/api/vm?action=participants'),
+      fetch('/api/vm?action=results')
+    ]);
+    const participants = await pRes.json();
+    const results = await rRes.json();
+    if (!participants.length) {
+      wrap.innerHTML = '<div class="loading">Ingen deltagere endnu.</div>';
+      return;
+    }
+    wrap.innerHTML = `<div class="oversigt-wrap">${buildOversigtTable(participants, results, 'ot', 'ot-match-head', 'ot-name-head')}</div>`;
+  } catch(e) {
+    wrap.innerHTML = '<div class="loading">Kunne ikke hente data.</div>';
+  }
+}
+
+// ---- TV tab ----
+
+let tvClockInterval = null;
+
+function startTV() {
+  tickClock();
+  if (!tvClockInterval) tvClockInterval = setInterval(tickClock, 1000);
+  loadTVData();
+  if (!tvRefreshInterval) tvRefreshInterval = setInterval(loadTVData, 30000);
+}
+
+function stopTV() {
+  clearInterval(tvClockInterval);
+  tvClockInterval = null;
+  clearInterval(tvRefreshInterval);
+  tvRefreshInterval = null;
+}
+
+function tickClock() {
+  const now = new Date();
+  const hms = now.toLocaleTimeString('da-DK', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
+  const date = now.toLocaleDateString('da-DK', {weekday:'long', day:'numeric', month:'long'});
+  const el = document.getElementById('tv-clock');
+  const del = document.getElementById('tv-clock-date');
+  if (el) el.textContent = hms;
+  if (del) del.textContent = date.charAt(0).toUpperCase() + date.slice(1);
+}
+
+async function loadTVData() {
+  try {
+    const [pRes, rRes] = await Promise.all([
+      fetch('/api/vm?action=participants'),
+      fetch('/api/vm?action=results')
+    ]);
+    const participants = await pRes.json();
+    const results = await rRes.json();
+
+    // Leaderboard
+    const sorted = [...participants].sort((a, b) => b.points - a.points);
+    const medals = ['🥇','🥈','🥉'];
+    const posClass = ['p1','p2','p3'];
+    const rowClass = ['tv-top1','tv-top2','tv-top3'];
+    let lbHtml = '';
+    if (sorted.length === 0) {
+      lbHtml = '<div style="color:var(--muted);font-size:14px;padding:8px">Ingen deltagere endnu.</div>';
+    } else {
+      sorted.forEach((p, i) => {
+        const pos = i < 3 ? medals[i] : i + 1;
+        const pc = i < 3 ? posClass[i] : '';
+        const rc = i < 3 ? rowClass[i] : '';
+        lbHtml += `<div class="tv-lb-row ${rc}"><div class="tv-lb-pos ${pc}">${pos}</div><div class="tv-lb-name">${p.name}</div><div class="tv-lb-pts">${p.points}</div></div>`;
+      });
+    }
+    const lbEl = document.getElementById('tv-lb');
+    if (lbEl) lbEl.innerHTML = lbHtml;
+
+    const upEl = document.getElementById('tv-updated');
+    if (upEl) {
+      const t = new Date().toLocaleTimeString('da-DK', {hour:'2-digit',minute:'2-digit',second:'2-digit'});
+      upEl.textContent = 'Sidst opdateret ' + t;
+    }
+
+    // Tips table
+    const tvWrap = document.getElementById('tv-table-wrap');
+    if (tvWrap) {
+      if (!participants.length) {
+        tvWrap.innerHTML = '<div class="loading">Ingen deltagere endnu.</div>';
+      } else {
+        tvWrap.innerHTML = buildOversigtTable(participants, results, 'tv', 'tv-match-head', 'tv-name-head');
+      }
+    }
+  } catch(e) {
+    const lbEl = document.getElementById('tv-lb');
+    if (lbEl) lbEl.innerHTML = '<div style="color:var(--muted);font-size:13px;padding:8px">Kunne ikke hente data.</div>';
+  }
 }
 
 buildMatches();
