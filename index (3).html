@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chr. Olesen — VM Tipsklub 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--blue:#1A3C6E;--blue2:#2E5FA3;--blue3:#D6E4F7;--gold:#C9A84C;--white:#fff;--off:#F7F8FA;--border:#E2E8F0;--text:#1a202c;--muted:#64748b;--radius:12px}
+body{font-family:'Inter',sans-serif;background:var(--off);color:var(--text);min-height:100vh}
+nav{background:var(--blue);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--white);letter-spacing:1px}
+.logo span{color:var(--gold)}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{color:rgba(255,255,255,0.75);text-decoration:none;font-size:14px;font-weight:500;cursor:pointer;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--white)}
+.hero{background:var(--blue);padding:3rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'⚽';position:absolute;font-size:300px;opacity:.04;top:-60px;right:-60px;line-height:1}
+.hero-tag{display:inline-block;background:var(--gold);color:var(--blue);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:4px 14px;border-radius:99px;margin-bottom:1rem}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,8vw,80px);color:var(--white);line-height:1;letter-spacing:2px;margin-bottom:.5rem}
+.hero h1 span{color:var(--gold)}
+.hero p{color:rgba(255,255,255,.7);font-size:16px;max-width:480px;margin:0 auto 2rem}
+.hero-meta{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap}
+.hero-meta-item .val{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--gold);letter-spacing:1px}
+.hero-meta-item .lbl{font-size:12px;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:1px}
+.container{max-width:860px;margin:0 auto;padding:2rem 1rem}
+.section{display:none}.section.active{display:block}
+.card{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);padding:1.5rem;margin-bottom:1rem}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem}
+.step{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);padding:1.25rem;text-align:center}
+.step-num{width:36px;height:36px;border-radius:50%;background:var(--blue);color:var(--white);font-size:16px;font-weight:600;display:flex;align-items:center;justify-content:center;margin:0 auto .75rem}
+.step h3{font-size:14px;font-weight:600;color:var(--blue);margin-bottom:.25rem}
+.step p{font-size:13px;color:var(--muted);line-height:1.5}
+.form-header{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--blue);letter-spacing:1px;margin-bottom:.25rem}
+.form-sub{font-size:14px;color:var(--muted);margin-bottom:1.5rem}
+.name-row{display:flex;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.name-row input{flex:1;min-width:180px;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:15px;font-family:'Inter',sans-serif;outline:none;transition:border .2s}
+.name-row input:focus{border-color:var(--blue2)}
+.grp-header{background:var(--blue);color:var(--white);padding:8px 16px;border-radius:8px 8px 0 0;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-top:1.5rem}
+.match-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:.5rem;padding:10px 12px;background:var(--white);border:1px solid var(--border);border-top:none;transition:background .15s}
+.match-row:hover{background:#f8fafc}
+.match-row:last-child{border-radius:0 0 8px 8px}
+.match-date{font-size:11px;color:var(--muted);margin-bottom:2px}
+.match-team{font-size:14px;font-weight:500}
+.match-team.home{text-align:right}
+.match-team.away{text-align:left}
+.tip-btns{display:flex;gap:4px}
+.tip-btn{width:34px;height:34px;border-radius:6px;border:1.5px solid var(--border);background:var(--white);font-size:13px;font-weight:600;cursor:pointer;transition:all .15s;color:var(--muted)}
+.tip-btn:hover{border-color:var(--blue2);color:var(--blue2)}
+.tip-btn.sel-1{background:var(--blue);border-color:var(--blue);color:var(--white)}
+.tip-btn.sel-x{background:var(--gold);border-color:var(--gold);color:var(--white)}
+.tip-btn.sel-2{background:var(--blue2);border-color:var(--blue2);color:var(--white)}
+.tip-btn.missing{border-color:#ef4444}
+.progress-bar-wrap{background:var(--border);border-radius:99px;height:6px;margin-bottom:.5rem;overflow:hidden}
+.progress-bar{background:linear-gradient(90deg,var(--blue),var(--blue2));height:100%;border-radius:99px;transition:width .3s}
+.progress-txt{font-size:13px;color:var(--muted);text-align:right}
+.submit-area{text-align:center;margin-top:2rem}
+.btn-primary{background:var(--blue);color:var(--white);border:none;padding:14px 40px;border-radius:8px;font-size:16px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;transition:background .2s}
+.btn-primary:hover{background:var(--blue2)}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed}
+.btn-secondary{background:transparent;color:var(--blue);border:1.5px solid var(--blue);padding:12px 32px;border-radius:8px;font-size:15px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;margin-right:1rem;transition:all .2s}
+.btn-secondary:hover{background:var(--blue3)}
+.review-group{margin-bottom:1.5rem}
+.review-group-title{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--blue);margin-bottom:.5rem}
+.review-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px}
+.review-row:last-child{border-bottom:none}
+.review-tip{font-weight:600;width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px}
+.review-tip.t1{background:var(--blue);color:var(--white)}
+.review-tip.tx{background:var(--gold);color:var(--white)}
+.review-tip.t2{background:var(--blue2);color:var(--white)}
+.success-box{text-align:center;padding:3rem 1rem}
+.success-icon{font-size:64px;margin-bottom:1rem}
+.success-box h2{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--blue);letter-spacing:1px;margin-bottom:.5rem}
+.success-box p{color:var(--muted);font-size:15px;max-width:420px;margin:0 auto 1.5rem}
+.mobilepay-box{display:inline-flex;align-items:center;gap:12px;background:var(--blue);color:var(--white);padding:14px 28px;border-radius:10px;font-size:16px;font-weight:600;margin-bottom:2rem}
+.mobilepay-num{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--gold);letter-spacing:2px}
+.pt-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:.5rem}
+.pt-title{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--blue);letter-spacing:1px}
+.pt-live{display:inline-flex;align-items:center;gap:6px;background:#dcfce7;color:#15803d;padding:4px 12px;border-radius:99px;font-size:12px;font-weight:600}
+.pt-live::before{content:'';width:8px;height:8px;border-radius:50%;background:#16a34a;animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.leaderboard{border-radius:var(--radius);overflow:hidden;border:1px solid var(--border)}
+.lb-header{background:var(--blue);color:var(--white);display:grid;grid-template-columns:50px 1fr 80px;padding:10px 16px;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase}
+.lb-row{display:grid;grid-template-columns:50px 1fr 80px;align-items:center;padding:14px 16px;background:var(--white);border-bottom:1px solid var(--border);transition:background .15s}
+.lb-row:last-child{border-bottom:none}
+.lb-row:hover{background:#f8fafc}
+.lb-row.top1{background:linear-gradient(90deg,#fffbeb,var(--white))}
+.lb-row.top2{background:linear-gradient(90deg,#f8faff,var(--white))}
+.lb-row.top3{background:linear-gradient(90deg,#fff7f0,var(--white))}
+.lb-pos{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--muted);text-align:center}
+.lb-pos.p1{color:#d97706}.lb-pos.p2{color:#94a3b8}.lb-pos.p3{color:#c2734a}
+.lb-name{font-size:15px;font-weight:500}
+.lb-pts{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--blue);text-align:right;letter-spacing:1px}
+.lb-pts-lbl{font-size:11px;color:var(--muted);text-align:right;text-transform:uppercase}
+.deadline-banner{background:var(--blue);color:var(--white);border-radius:var(--radius);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:.5rem}
+.deadline-banner .d-label{font-size:12px;text-transform:uppercase;letter-spacing:2px;opacity:.7}
+.deadline-banner .d-val{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;color:var(--gold)}
+.rules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:2rem}
+.rule-card{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);padding:1.25rem}
+.rule-icon{font-size:28px;margin-bottom:.5rem}
+.rule-card h3{font-size:14px;font-weight:600;color:var(--blue);margin-bottom:.25rem}
+.rule-card p{font-size:13px;color:var(--muted);line-height:1.6}
+.prize-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem}
+.prize-card{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);padding:1.25rem;text-align:center}
+.prize-medal{font-size:32px;margin-bottom:.25rem}
+.prize-pct{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--blue);letter-spacing:1px}
+.prize-lbl{font-size:12px;color:var(--muted)}
+.admin-toggle{font-size:13px;color:var(--muted);cursor:pointer;text-decoration:underline;display:block;text-align:center;margin-top:2rem;margin-bottom:1rem}
+.admin-area{display:none;background:var(--white);border-radius:var(--radius);border:1px solid var(--border);padding:1.5rem}
+.admin-area.open{display:block}
+.admin-title{font-size:14px;font-weight:600;color:var(--blue);margin-bottom:1rem}
+.admin-code-row{display:flex;gap:1rem;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap}
+.admin-code-row input{padding:8px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;outline:none;width:200px}
+.admin-code-row input:focus{border-color:var(--blue2)}
+.admin-match-row{display:flex;align-items:center;gap:1rem;padding:8px 0;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.admin-match-row:last-child{border-bottom:none}
+.admin-match-lbl{font-size:14px;font-weight:500;flex:1;min-width:200px}
+.admin-select{padding:5px 8px;border:1px solid var(--border);border-radius:6px;font-family:'Inter',sans-serif;font-size:13px;outline:none}
+.btn-admin{background:var(--blue);color:var(--white);border:none;padding:10px 24px;border-radius:6px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;margin-top:1rem}
+.btn-admin:hover{background:var(--blue2)}
+.grp-admin-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--blue);margin:1rem 0 .5rem;padding-top:.5rem;border-top:2px solid var(--blue3)}
+.loading{text-align:center;padding:2rem;color:var(--muted);font-size:14px}
+.spinner{display:inline-block;width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite;margin-right:8px;vertical-align:middle}
+@keyframes spin{to{transform:rotate(360deg)}}
+.alert{padding:12px 16px;border-radius:8px;font-size:14px;margin-bottom:1rem}
+.alert-error{background:#fef2f2;color:#dc2626;border:1px solid #fecaca}
+.alert-success{background:#f0fdf4;color:#16a34a;border:1px solid #bbf7d0}
+/* Oversigt tab */
+.oversigt-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--radius);border:1px solid var(--border)}
+.oversigt-table{border-collapse:collapse;font-size:12px;white-space:nowrap}
+.oversigt-table th,.oversigt-table td{border:1px solid var(--border);padding:0}
+.ot-match-head{position:sticky;left:0;z-index:3;background:var(--blue);color:var(--white);font-size:11px;font-weight:600;letter-spacing:1px;padding:8px 12px;min-width:160px}
+.ot-name-head{background:var(--blue);color:var(--white);font-size:11px;font-weight:600;padding:6px 8px;text-align:center;min-width:52px;line-height:1.3}
+.ot-name-first{display:block;font-size:10px;opacity:.8}
+.ot-name-last{display:block;font-size:12px}
+.ot-group-sep{position:sticky;left:0;z-index:2;background:var(--blue3);color:var(--blue);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px}
+.ot-group-sep-full{background:var(--blue3)}
+.ot-match-cell{position:sticky;left:0;z-index:2;background:var(--white);font-size:12px;font-weight:500;padding:6px 10px;min-width:160px;border-right:2px solid var(--border)}
+.ot-match-cell.has-result{background:#f0fdf4}
+.ot-result-badge{display:inline-block;margin-left:6px;background:var(--blue);color:var(--white);font-size:10px;font-weight:700;padding:1px 5px;border-radius:4px}
+.ot-tip-cell{text-align:center;width:44px;min-width:44px;font-size:12px;font-weight:700;color:var(--white);padding:6px 4px}
+.ot-tip-cell.t1{background:var(--blue)}
+.ot-tip-cell.tx{background:var(--gold)}
+.ot-tip-cell.t2{background:var(--blue2)}
+.ot-tip-cell.empty{background:var(--off);color:var(--muted)}
+.ot-tip-cell.correct{box-shadow:inset 0 0 0 2px #16a34a}
+/* TV tab */
+#section-tv{background:var(--off);min-height:100vh;padding:0}
+.tv-layout{display:flex;height:100vh;overflow:hidden}
+.tv-left{width:320px;min-width:320px;background:var(--white);border-right:2px solid var(--border);display:flex;flex-direction:column;padding:20px 16px;overflow:hidden}
+.tv-right{flex:1;overflow:hidden;display:flex;flex-direction:column;padding:16px}
+.tv-logo{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--blue);letter-spacing:1px;line-height:1.1;margin-bottom:4px}
+.tv-logo span{color:var(--gold)}
+.tv-clock{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--blue);letter-spacing:2px;line-height:1}
+.tv-clock-date{font-size:13px;color:var(--muted);margin-bottom:12px;font-weight:500}
+.tv-section-title{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--blue);letter-spacing:1px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.tv-lb{flex:1;overflow-y:auto;overflow-x:hidden}
+.tv-lb-row{display:grid;grid-template-columns:44px 1fr 60px;align-items:center;padding:6px 8px;border-bottom:1px solid var(--border);border-radius:4px}
+.tv-lb-row.tv-top1{background:linear-gradient(90deg,#fffbeb,var(--white))}
+.tv-lb-row.tv-top2{background:linear-gradient(90deg,#f8faff,var(--white))}
+.tv-lb-row.tv-top3{background:linear-gradient(90deg,#fff7f0,var(--white))}
+.tv-lb-pos{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--muted);text-align:center}
+.tv-lb-pos.p1{color:#d97706}.tv-lb-pos.p2{color:#94a3b8}.tv-lb-pos.p3{color:#c2734a}
+.tv-lb-name{font-size:15px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tv-lb-pts{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--gold);text-align:right;letter-spacing:1px}
+.tv-updated{font-size:11px;color:var(--muted);margin-top:8px;text-align:center}
+.tv-right-title{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--blue);letter-spacing:1px;margin-bottom:8px}
+.tv-table-wrap{flex:1;overflow:auto}
+.tv-table{border-collapse:collapse;font-size:11px;white-space:nowrap}
+.tv-table th,.tv-table td{border:1px solid var(--border);padding:0}
+.tv-match-head{position:sticky;left:0;z-index:3;background:var(--blue);color:var(--white);font-size:10px;font-weight:600;padding:5px 8px;min-width:130px}
+.tv-name-head{background:var(--blue);color:var(--white);font-size:9px;font-weight:600;padding:4px 5px;text-align:center;min-width:40px;line-height:1.2}
+.tv-name-first{display:block;opacity:.8}
+.tv-group-sep-full{background:var(--blue3)}
+.tv-group-sep{position:sticky;left:0;z-index:2;background:var(--blue3);color:var(--blue);font-size:9px;font-weight:700;letter-spacing:2px;padding:3px 8px}
+.tv-match-cell{position:sticky;left:0;z-index:2;background:var(--white);font-size:11px;font-weight:500;padding:4px 8px;min-width:130px;border-right:2px solid var(--border)}
+.tv-match-cell.has-result{background:#f0fdf4}
+.tv-tip-cell{text-align:center;width:36px;min-width:36px;font-size:11px;font-weight:700;color:var(--white);padding:4px 2px}
+.tv-tip-cell.t1{background:var(--blue)}
+.tv-tip-cell.tx{background:var(--gold)}
+.tv-tip-cell.t2{background:var(--blue2)}
+.tv-tip-cell.empty{background:var(--off);color:var(--muted)}
+.tv-tip-cell.correct{box-shadow:inset 0 0 0 2px #16a34a}
+.tv-result-badge{display:inline-block;margin-left:4px;background:var(--blue);color:var(--white);font-size:9px;font-weight:700;padding:1px 4px;border-radius:3px}
+@media(max-width:600px){
+  .match-row{grid-template-columns:1fr auto 1fr;gap:.25rem}
+  .match-team{font-size:12px}.tip-btn{width:28px;height:28px;font-size:11px}
+  .prize-row{grid-template-columns:1fr}.hero h1{font-size:48px}
+  nav{padding:0 1rem}.nav-links{gap:1rem}
+  .deadline-banner{flex-direction:column;gap:.25rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Chr. <span>Olesen</span> VM 2026</div>
+  <div class="nav-links">
+    <a onclick="showSection('forside')" class="active" id="nav-forside">Forside</a>
+    <a onclick="showSection('tips')" id="nav-tips">Tips</a>
+    <a onclick="showSection('pointtavle')" id="nav-pointtavle">Pointtavle</a>
+    <a onclick="showSection('oversigt')" id="nav-oversigt">Oversigt</a>
+    <a onclick="showSection('tv')" id="nav-tv">📺 TV</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">FIFA VM 2026</div>
+  <h1>Chr. Olesen<br><span>Tipsklub</span></h1>
+  <p>USA · Canada · Mexico · 11. juni – 27. juni</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><div class="val">72</div><div class="lbl">Kampe</div></div>
+    <div class="hero-meta-item"><div class="val">100</div><div class="lbl">Kr. at deltage</div></div>
+    <div class="hero-meta-item"><div class="val">3</div><div class="lbl">Præmier</div></div>
+    <div class="hero-meta-item"><div class="val" id="countdown-days">--</div><div class="lbl">Dage til VM</div></div>
+  </div>
+</div>
+
+<!-- FORSIDE -->
+<div class="section active container" id="section-forside">
+  <div class="deadline-banner">
+    <div><div class="d-label">Deadline for tips</div><div class="d-val">Onsdag 11. juni kl. 14:00</div></div>
+    <div><div class="d-label">Betaling · MobilePay</div><div class="d-val">7465AU</div></div>
+  </div>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><h3>Udfyld tips</h3><p>Tip alle 72 gruppespilskampe — ca. 10–15 min.</p></div>
+    <div class="step"><div class="step-num">2</div><h3>Betal 50 kr.</h3><p>Via MobilePay inden deadline 11. juni kl. 14:00.</p></div>
+    <div class="step"><div class="step-num">3</div><h3>Følg med</h3><p>Se stillingen på pointtavlen løbende under turneringen.</p></div>
+  </div>
+  <div class="rules-grid">
+    <div class="rule-card"><div class="rule-icon">🎯</div><h3>1X2 system</h3><p>For hver kamp vælger du 1 (hjemmehold vinder), X (uafgjort) eller 2 (udehold vinder).</p></div>
+    <div class="rule-card"><div class="rule-icon">⚽</div><h3>Kun gruppespillet</h3><p>Vi tipper alle 72 kampe i gruppespillet — gruppe A til L.</p></div>
+    <div class="rule-card"><div class="rule-icon">🏆</div><h3>Flest rigtige vinder</h3><p>1 rigtigt tip = 1 point. De 3 med flest point efter 27. juni vinder.</p></div>
+    <div class="rule-card"><div class="rule-icon">📺</div><h3>Live stillingen</h3><p>Pointtavlen opdateres automatisk for alle når kampresultater tastes ind.</p></div>
+  </div>
+  <div class="prize-row">
+    <div class="prize-card"><div class="prize-medal">🥇</div><div class="prize-pct">50%</div><div class="prize-lbl">af præmiepuljen</div></div>
+    <div class="prize-card"><div class="prize-medal">🥈</div><div class="prize-pct">30%</div><div class="prize-lbl">af præmiepuljen</div></div>
+    <div class="prize-card"><div class="prize-medal">🥉</div><div class="prize-pct">20%</div><div class="prize-lbl">af præmiepuljen</div></div>
+  </div>
+  <div style="text-align:center"><button class="btn-primary" onclick="showSection('tips')">Udfyld dine tips →</button></div>
+</div>
+
+<!-- TIPS -->
+<div class="section container" id="section-tips">
+  <div class="form-header">Udfyld dine tips</div>
+  <div class="form-sub">Vælg 1, X eller 2 for alle 72 kampe. Alle felter skal udfyldes.</div>
+  <div class="name-row">
+    <input type="text" id="fname" placeholder="Fornavn *" />
+    <input type="text" id="lname" placeholder="Efternavn *" />
+    <input type="email" id="email" placeholder="Email *" />
+  </div>
+  <div class="progress-bar-wrap"><div class="progress-bar" id="progress-bar" style="width:0%"></div></div>
+  <div class="progress-txt"><span id="progress-txt">0 / 72 kampe tippet</span></div>
+  <div id="matches-container"></div>
+  <div class="submit-area">
+    <button class="btn-secondary" onclick="showReview()">Gennemse tips</button>
+    <button class="btn-primary" id="submit-btn" onclick="submitTips()">Send tips ✓</button>
+  </div>
+</div>
+
+<!-- REVIEW -->
+<div class="section container" id="section-review">
+  <div class="form-header">Gennemse dine tips</div>
+  <div class="form-sub">Tjek at alt ser rigtigt ud inden du sender.</div>
+  <div id="review-content"></div>
+  <div class="submit-area" style="margin-top:1.5rem">
+    <button class="btn-secondary" onclick="showSection('tips')">← Ret tips</button>
+    <button class="btn-primary" id="confirm-btn" onclick="submitTips()">Bekræft og send ✓</button>
+  </div>
+</div>
+
+<!-- SUCCESS -->
+<div class="section container" id="section-success">
+  <div class="success-box">
+    <div class="success-icon">🎉</div>
+    <h2>Tips modtaget!</h2>
+    <p>Dine tips er gemt. Husk at betale 50 kr. via MobilePay så du er officielt med.</p>
+    <div class="mobilepay-box">💸 MobilePay: <span class="mobilepay-num">7465AU</span></div>
+    <br><br>
+    <button class="btn-primary" onclick="showSection('pointtavle')">Se pointtavlen</button>
+  </div>
+</div>
+
+<!-- POINTTAVLE -->
+<div class="section container" id="section-pointtavle">
+  <div class="pt-header">
+    <div class="pt-title">Pointtavle</div>
+    <div class="pt-live">Live</div>
+  </div>
+  <div id="leaderboard"><div class="loading"><span class="spinner"></span>Henter pointtavle...</div></div>
+
+  <span class="admin-toggle" onclick="toggleAdmin()">⚙ Admin: opdater kampresultater</span>
+  <div class="admin-area" id="admin-area">
+    <div class="admin-title">Indtast admin-kode og opdater kampresultater</div>
+    <div class="admin-code-row">
+      <input type="password" id="admin-code" placeholder="Admin-kode" />
+      <span style="font-size:13px;color:var(--muted)">Koden er kun til administrator</span>
+    </div>
+    <div id="admin-matches"></div>
+    <button class="btn-admin" onclick="saveResults()">Gem og opdater pointtavle</button>
+    <div id="admin-msg" style="margin-top:1rem"></div>
+  </div>
+</div>
+
+<!-- OVERSIGT -->
+<div class="section container" id="section-oversigt" style="max-width:100%;padding:2rem 1rem">
+  <div class="pt-header">
+    <div class="pt-title">Tips Oversigt</div>
+    <div class="pt-live">Live</div>
+  </div>
+  <div id="oversigt-table-wrap"><div class="loading"><span class="spinner"></span>Henter data...</div></div>
+</div>
+
+<!-- TV -->
+<div class="section" id="section-tv">
+  <div class="tv-layout">
+    <div class="tv-left">
+      <div class="tv-logo">Chr. <span>Olesen</span><br>VM 2026</div>
+      <div class="tv-clock" id="tv-clock">--:--:--</div>
+      <div class="tv-clock-date" id="tv-clock-date"></div>
+      <div class="tv-section-title">Pointtavle <span class="pt-live">Live</span></div>
+      <div class="tv-lb" id="tv-lb"><div class="loading"><span class="spinner"></span></div></div>
+      <div class="tv-updated" id="tv-updated"></div>
+    </div>
+    <div class="tv-right">
+      <div class="tv-right-title">Tips Oversigt</div>
+      <div class="tv-table-wrap" id="tv-table-wrap"><div class="loading"><span class="spinner"></span>Henter data...</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const MATCHES = [
+  {id:1,g:'A',d:'11/6',h:'Mexico',a:'Sydafrika'},
+  {id:2,g:'A',d:'11/6',h:'Sydkorea',a:'Tjekkiet'},
+  {id:3,g:'A',d:'18/6',h:'Mexico',a:'Sydkorea'},
+  {id:4,g:'A',d:'18/6',h:'Tjekkiet',a:'Sydafrika'},
+  {id:5,g:'A',d:'24/6',h:'Mexico',a:'Tjekkiet'},
+  {id:6,g:'A',d:'24/6',h:'Sydkorea',a:'Sydafrika'},
+  {id:7,g:'B',d:'12/6',h:'Canada',a:'Bosnien'},
+  {id:8,g:'B',d:'13/6',h:'Qatar',a:'Schweiz'},
+  {id:9,g:'B',d:'18/6',h:'Schweiz',a:'Bosnien'},
+  {id:10,g:'B',d:'18/6',h:'Canada',a:'Qatar'},
+  {id:11,g:'B',d:'24/6',h:'Schweiz',a:'Canada'},
+  {id:12,g:'B',d:'24/6',h:'Bosnien',a:'Qatar'},
+  {id:13,g:'C',d:'13/6',h:'Brasilien',a:'Marokko'},
+  {id:14,g:'C',d:'13/6',h:'Haiti',a:'Skotland'},
+  {id:15,g:'C',d:'19/6',h:'Skotland',a:'Marokko'},
+  {id:16,g:'C',d:'19/6',h:'Brasilien',a:'Haiti'},
+  {id:17,g:'C',d:'24/6',h:'Brasilien',a:'Skotland'},
+  {id:18,g:'C',d:'24/6',h:'Marokko',a:'Haiti'},
+  {id:19,g:'D',d:'12/6',h:'USA',a:'Paraguay'},
+  {id:20,g:'D',d:'13/6',h:'Australien',a:'Tyrkiet'},
+  {id:21,g:'D',d:'19/6',h:'USA',a:'Australien'},
+  {id:22,g:'D',d:'19/6',h:'Tyrkiet',a:'Paraguay'},
+  {id:23,g:'D',d:'25/6',h:'USA',a:'Tyrkiet'},
+  {id:24,g:'D',d:'25/6',h:'Paraguay',a:'Australien'},
+  {id:25,g:'E',d:'14/6',h:'Tyskland',a:'Curacao'},
+  {id:26,g:'E',d:'14/6',h:'Elfenbenskysten',a:'Ecuador'},
+  {id:27,g:'E',d:'20/6',h:'Tyskland',a:'Elfenbenskysten'},
+  {id:28,g:'E',d:'20/6',h:'Ecuador',a:'Curacao'},
+  {id:29,g:'E',d:'25/6',h:'Ecuador',a:'Tyskland'},
+  {id:30,g:'E',d:'25/6',h:'Curacao',a:'Elfenbenskysten'},
+  {id:31,g:'F',d:'14/6',h:'Holland',a:'Japan'},
+  {id:32,g:'F',d:'14/6',h:'Tunesien',a:'Sverige'},
+  {id:33,g:'F',d:'20/6',h:'Holland',a:'Sverige'},
+  {id:34,g:'F',d:'20/6',h:'Tunesien',a:'Japan'},
+  {id:35,g:'F',d:'25/6',h:'Tunesien',a:'Holland'},
+  {id:36,g:'F',d:'25/6',h:'Japan',a:'Sverige'},
+  {id:37,g:'G',d:'15/6',h:'Belgien',a:'Egypten'},
+  {id:38,g:'G',d:'15/6',h:'Iran',a:'New Zealand'},
+  {id:39,g:'G',d:'21/6',h:'Belgien',a:'Iran'},
+  {id:40,g:'G',d:'21/6',h:'New Zealand',a:'Egypten'},
+  {id:41,g:'G',d:'26/6',h:'New Zealand',a:'Belgien'},
+  {id:42,g:'G',d:'26/6',h:'Egypten',a:'Iran'},
+  {id:43,g:'H',d:'15/6',h:'Spanien',a:'Kap Verde'},
+  {id:44,g:'H',d:'15/6',h:'Saudi-Arabien',a:'Uruguay'},
+  {id:45,g:'H',d:'21/6',h:'Spanien',a:'Saudi-Arabien'},
+  {id:46,g:'H',d:'21/6',h:'Uruguay',a:'Kap Verde'},
+  {id:47,g:'H',d:'26/6',h:'Uruguay',a:'Spanien'},
+  {id:48,g:'H',d:'26/6',h:'Kap Verde',a:'Saudi-Arabien'},
+  {id:49,g:'I',d:'16/6',h:'Frankrig',a:'Senegal'},
+  {id:50,g:'I',d:'16/6',h:'Irak',a:'Norge'},
+  {id:51,g:'I',d:'22/6',h:'Frankrig',a:'Irak'},
+  {id:52,g:'I',d:'22/6',h:'Norge',a:'Senegal'},
+  {id:53,g:'I',d:'26/6',h:'Norge',a:'Frankrig'},
+  {id:54,g:'I',d:'26/6',h:'Senegal',a:'Irak'},
+  {id:55,g:'J',d:'16/6',h:'Argentina',a:'Algeriet'},
+  {id:56,g:'J',d:'16/6',h:'Østrig',a:'Jordan'},
+  {id:57,g:'J',d:'22/6',h:'Argentina',a:'Østrig'},
+  {id:58,g:'J',d:'22/6',h:'Jordan',a:'Algeriet'},
+  {id:59,g:'J',d:'27/6',h:'Argentina',a:'Jordan'},
+  {id:60,g:'J',d:'27/6',h:'Algeriet',a:'Østrig'},
+  {id:61,g:'K',d:'17/6',h:'Portugal',a:'Congo DR'},
+  {id:62,g:'K',d:'17/6',h:'Usbekistan',a:'Colombia'},
+  {id:63,g:'K',d:'23/6',h:'Portugal',a:'Usbekistan'},
+  {id:64,g:'K',d:'23/6',h:'Colombia',a:'Congo DR'},
+  {id:65,g:'K',d:'27/6',h:'Colombia',a:'Portugal'},
+  {id:66,g:'K',d:'27/6',h:'Congo DR',a:'Usbekistan'},
+  {id:67,g:'L',d:'17/6',h:'England',a:'Kroatien'},
+  {id:68,g:'L',d:'17/6',h:'Ghana',a:'Panama'},
+  {id:69,g:'L',d:'23/6',h:'England',a:'Ghana'},
+  {id:70,g:'L',d:'23/6',h:'Panama',a:'Kroatien'},
+  {id:71,g:'L',d:'27/6',h:'Panama',a:'England'},
+  {id:72,g:'L',d:'27/6',h:'Kroatien',a:'Ghana'}
+];
+
+let tips = {};
+let cachedResults = {};
+
+let tvRefreshInterval = null;
+
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('section-' + id).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const nav = document.getElementById('nav-' + id);
+  if (nav) nav.classList.add('active');
+
+  // Hide nav on TV tab, restore on others
+  const navEl = document.querySelector('nav');
+  const heroEl = document.querySelector('.hero');
+  if (id === 'tv') {
+    navEl.style.display = 'none';
+    if (heroEl) heroEl.style.display = 'none';
+    startTV();
+  } else {
+    navEl.style.display = '';
+    if (heroEl) heroEl.style.display = '';
+    stopTV();
+  }
+
+  if (id === 'pointtavle') loadLeaderboard();
+  if (id === 'oversigt') loadOversigt();
+  window.scrollTo(0, 0);
+}
+
+function buildMatches() {
+  const c = document.getElementById('matches-container');
+  let html = '';
+  let curG = '';
+  MATCHES.forEach(m => {
+    if (m.g !== curG) {
+      if (curG) html += '</div>';
+      html += `<div class="grp-header">Gruppe ${m.g}</div><div>`;
+      curG = m.g;
+    }
+    html += `<div class="match-row" id="row-${m.id}">
+      <div><div class="match-date">${m.d}</div><div class="match-team home">${m.h}</div></div>
+      <div class="tip-btns">
+        <button class="tip-btn" id="btn-${m.id}-1" onclick="setTip(${m.id},'1')">1</button>
+        <button class="tip-btn" id="btn-${m.id}-X" onclick="setTip(${m.id},'X')">X</button>
+        <button class="tip-btn" id="btn-${m.id}-2" onclick="setTip(${m.id},'2')">2</button>
+      </div>
+      <div><div class="match-date">${m.d}</div><div class="match-team away">${m.a}</div></div>
+    </div>`;
+  });
+  html += '</div>';
+  c.innerHTML = html;
+}
+
+function setTip(id, val) {
+  tips[id] = val;
+  ['1','X','2'].forEach(v => {
+    const b = document.getElementById(`btn-${id}-${v}`);
+    b.className = 'tip-btn' + (v === val ? ` sel-${v.toLowerCase()}` : '');
+  });
+  document.getElementById(`row-${id}`).classList.remove('missing');
+  updateProgress();
+}
+
+function updateProgress() {
+  const done = Object.keys(tips).length;
+  const pct = Math.round(done / 72 * 100);
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.getElementById('progress-txt').textContent = `${done} / 72 kampe tippet`;
+}
+
+function showReview() {
+  const missing = MATCHES.filter(m => !tips[m.id]);
+  if (missing.length > 0) {
+    missing.forEach(m => document.getElementById(`row-${m.id}`).classList.add('missing'));
+    alert(`Du mangler ${missing.length} tip. Manglende kampe er markeret med rødt.`);
+    return;
+  }
+  if (!document.getElementById('fname').value.trim() || !document.getElementById('lname').value.trim()) {
+    alert('Udfyld venligst dit navn.');
+    return;
+  }
+  buildReview();
+  showSection('review');
+}
+
+function buildReview() {
+  const tipClass = {'1':'t1','X':'tx','2':'t2'};
+  let html = `<div class="card"><strong>${document.getElementById('fname').value} ${document.getElementById('lname').value}</strong> · ${document.getElementById('email').value}</div>`;
+  let curG = '';
+  MATCHES.forEach(m => {
+    if (m.g !== curG) {
+      if (curG) html += '</div>';
+      html += `<div class="review-group"><div class="review-group-title">Gruppe ${m.g}</div>`;
+      curG = m.g;
+    }
+    const t = tips[m.id];
+    html += `<div class="review-row"><span>${m.h} vs ${m.a}</span><div class="review-tip ${tipClass[t]}">${t}</div></div>`;
+  });
+  html += '</div></div>';
+  document.getElementById('review-content').innerHTML = html;
+}
+
+async function submitTips() {
+  const missing = MATCHES.filter(m => !tips[m.id]);
+  if (missing.length > 0) { showSection('tips'); return; }
+  const fname = document.getElementById('fname').value.trim();
+  const lname = document.getElementById('lname').value.trim();
+  const email = document.getElementById('email').value.trim();
+  if (!fname || !lname) { alert('Udfyld venligst dit navn.'); showSection('tips'); return; }
+
+  const btn = document.getElementById('submit-btn');
+  const btn2 = document.getElementById('confirm-btn');
+  if (btn) btn.disabled = true;
+  if (btn2) btn2.disabled = true;
+  if (btn) btn.textContent = 'Sender...';
+  if (btn2) btn2.textContent = 'Sender...';
+
+  try {
+    const res = await fetch('/api/vm?action=submit', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({name: fname + ' ' + lname, email, tips})
+    });
+    if (res.ok) {
+      showSection('success');
+    } else {
+      alert('Der skete en fejl. Prøv igen.');
+    }
+  } catch(e) {
+    alert('Kunne ikke sende tips. Tjek din internetforbindelse.');
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = 'Send tips ✓'; }
+    if (btn2) { btn2.disabled = false; btn2.textContent = 'Bekræft og send ✓'; }
+  }
+}
+
+async function loadLeaderboard() {
+  document.getElementById('leaderboard').innerHTML = '<div class="loading"><span class="spinner"></span>Henter pointtavle...</div>';
+  try {
+    const res = await fetch('/api/vm?action=participants');
+    const participants = await res.json();
+    const sorted = [...participants].sort((a,b) => b.points - a.points);
+    const medals = ['🥇','🥈','🥉'];
+    const posClass = ['p1','p2','p3'];
+    const rowClass = ['top1','top2','top3'];
+    let html = `<div class="lb-header"><div>#</div><div>Navn</div><div style="text-align:right">Point</div></div>`;
+    if (sorted.length === 0) {
+      html += `<div class="lb-row"><div class="lb-pos">—</div><div class="lb-name" style="color:var(--muted);font-size:14px">Ingen deltagere endnu — vær den første!</div><div></div></div>`;
+    } else {
+      sorted.forEach((p, i) => {
+        const pos = i < 3 ? medals[i] : i + 1;
+        const pc = i < 3 ? posClass[i] : '';
+        const rc = i < 3 ? rowClass[i] : '';
+        html += `<div class="lb-row ${rc}"><div class="lb-pos ${pc}">${pos}</div><div class="lb-name">${p.name}</div><div><div class="lb-pts">${p.points}</div><div class="lb-pts-lbl">point</div></div></div>`;
+      });
+    }
+    document.getElementById('leaderboard').innerHTML = html;
+  } catch(e) {
+    document.getElementById('leaderboard').innerHTML = '<div class="loading">Kunne ikke hente pointtavle.</div>';
+  }
+}
+
+function toggleAdmin() {
+  const a = document.getElementById('admin-area');
+  a.classList.toggle('open');
+  if (a.classList.contains('open')) buildAdminMatches();
+}
+
+async function buildAdminMatches() {
+  let results = {};
+  try {
+    const res = await fetch('/api/vm?action=results');
+    results = await res.json();
+    cachedResults = results;
+  } catch {}
+  let html = '';
+  let curG = '';
+  MATCHES.forEach(m => {
+    if (m.g !== curG) {
+      html += `<div class="grp-admin-title">Gruppe ${m.g}</div>`;
+      curG = m.g;
+    }
+    const cur = results[m.id] || '';
+    html += `<div class="admin-match-row">
+      <span class="admin-match-lbl">${m.h} vs ${m.a} <span style="color:var(--muted);font-size:12px">(${m.d})</span></span>
+      <select id="res-${m.id}" class="admin-select">
+        <option value="">— ikke spillet</option>
+        <option value="1" ${cur==='1'?'selected':''}>1 — ${m.h} vinder</option>
+        <option value="X" ${cur==='X'?'selected':''}>X — Uafgjort</option>
+        <option value="2" ${cur==='2'?'selected':''}>2 — ${m.a} vinder</option>
+      </select>
+    </div>`;
+  });
+  document.getElementById('admin-matches').innerHTML = html;
+}
+
+async function saveResults() {
+  const code = document.getElementById('admin-code').value;
+  if (!code) { alert('Indtast admin-koden.'); return; }
+  const results = {};
+  MATCHES.forEach(m => {
+    const v = document.getElementById(`res-${m.id}`).value;
+    if (v) results[m.id] = v;
+  });
+  const msgEl = document.getElementById('admin-msg');
+  msgEl.innerHTML = '<div class="alert">Gemmer...</div>';
+  try {
+    const res = await fetch('/api/vm?action=results', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({code, results})
+    });
+    if (res.ok) {
+      msgEl.innerHTML = '<div class="alert alert-success">✓ Resultater gemt og pointtavle opdateret!</div>';
+      loadLeaderboard();
+    } else {
+      const data = await res.json();
+      msgEl.innerHTML = `<div class="alert alert-error">Fejl: ${data.error || 'Ukendt fejl'}</div>`;
+    }
+  } catch(e) {
+    msgEl.innerHTML = '<div class="alert alert-error">Kunne ikke gemme. Tjek internetforbindelsen.</div>';
+  }
+}
+
+function countdown() {
+  const vm = new Date('2026-06-11T21:00:00');
+  const diff = Math.ceil((vm - new Date()) / 86400000);
+  document.getElementById('countdown-days').textContent = diff > 0 ? diff : '🎉';
+}
+
+// ---- Shared helpers ----
+
+function buildTipCell(tip, result, cssPrefix) {
+  const p = cssPrefix || 'ot';
+  if (!tip) return `<td class="${p}-tip-cell empty">—</td>`;
+  const cls = tip === '1' ? 't1' : tip === 'X' ? 'tx' : 't2';
+  const correct = result && tip === result ? ' correct' : '';
+  return `<td class="${p}-tip-cell ${cls}${correct}">${tip}</td>`;
+}
+
+function buildOversigtTable(participants, results, cssPrefix, matchHeadClass, nameCls) {
+  const p = cssPrefix || 'ot';
+  const mh = matchHeadClass || 'ot-match-head';
+  const nc = nameCls || 'ot-name-head';
+  const sorted = [...participants].sort((a, b) => b.points - a.points);
+
+  let html = `<table class="${p}-table"><thead><tr>`;
+  html += `<th class="${mh}">Kamp</th>`;
+  sorted.forEach(par => {
+    const parts = par.name.split(' ');
+    const first = parts[0] || '';
+    const last = parts.slice(1).join(' ') || '';
+    html += `<th class="${nc}"><span class="${p}-name-first">${first}</span><span>${last}</span></th>`;
+  });
+  html += '</tr></thead><tbody>';
+
+  let curG = '';
+  MATCHES.forEach(m => {
+    if (m.g !== curG) {
+      curG = m.g;
+      html += `<tr class="${p}-group-sep-full"><td class="${p}-group-sep" colspan="${sorted.length + 1}">Gruppe ${m.g}</td></tr>`;
+    }
+    const res = results[m.id] || '';
+    const hasCls = res ? ' has-result' : '';
+    const resBadge = res ? `<span class="${p}-result-badge">${res}</span>` : '';
+    html += `<tr><td class="${p}-match-cell${hasCls}">${m.d} ${m.h} – ${m.a}${resBadge}</td>`;
+    sorted.forEach(par => {
+      const tip = par.tips ? par.tips[m.id] : null;
+      html += buildTipCell(tip, res, p);
+    });
+    html += '</tr>';
+  });
+
+  html += '</tbody></table>';
+  return html;
+}
+
+// ---- Oversigt tab ----
+
+async function loadOversigt() {
+  const wrap = document.getElementById('oversigt-table-wrap');
+  wrap.innerHTML = '<div class="loading"><span class="spinner"></span>Henter data...</div>';
+  try {
+    const [pRes, rRes] = await Promise.all([
+      fetch('/api/vm?action=participants'),
+      fetch('/api/vm?action=results')
+    ]);
+    const participants = await pRes.json();
+    const results = await rRes.json();
+    if (!participants.length) {
+      wrap.innerHTML = '<div class="loading">Ingen deltagere endnu.</div>';
+      return;
+    }
+    wrap.innerHTML = `<div class="oversigt-wrap">${buildOversigtTable(participants, results, 'ot', 'ot-match-head', 'ot-name-head')}</div>`;
+  } catch(e) {
+    wrap.innerHTML = '<div class="loading">Kunne ikke hente data.</div>';
+  }
+}
+
+// ---- TV tab ----
+
+let tvClockInterval = null;
+
+function startTV() {
+  tickClock();
+  if (!tvClockInterval) tvClockInterval = setInterval(tickClock, 1000);
+  loadTVData();
+  if (!tvRefreshInterval) tvRefreshInterval = setInterval(loadTVData, 30000);
+}
+
+function stopTV() {
+  clearInterval(tvClockInterval);
+  tvClockInterval = null;
+  clearInterval(tvRefreshInterval);
+  tvRefreshInterval = null;
+}
+
+function tickClock() {
+  const now = new Date();
+  const hms = now.toLocaleTimeString('da-DK', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
+  const date = now.toLocaleDateString('da-DK', {weekday:'long', day:'numeric', month:'long'});
+  const el = document.getElementById('tv-clock');
+  const del = document.getElementById('tv-clock-date');
+  if (el) el.textContent = hms;
+  if (del) del.textContent = date.charAt(0).toUpperCase() + date.slice(1);
+}
+
+async function loadTVData() {
+  try {
+    const [pRes, rRes] = await Promise.all([
+      fetch('/api/vm?action=participants'),
+      fetch('/api/vm?action=results')
+    ]);
+    const participants = await pRes.json();
+    const results = await rRes.json();
+
+    // Leaderboard
+    const sorted = [...participants].sort((a, b) => b.points - a.points);
+    const medals = ['🥇','🥈','🥉'];
+    const posClass = ['p1','p2','p3'];
+    const rowClass = ['tv-top1','tv-top2','tv-top3'];
+    let lbHtml = '';
+    if (sorted.length === 0) {
+      lbHtml = '<div style="color:var(--muted);font-size:14px;padding:8px">Ingen deltagere endnu.</div>';
+    } else {
+      sorted.forEach((p, i) => {
+        const pos = i < 3 ? medals[i] : i + 1;
+        const pc = i < 3 ? posClass[i] : '';
+        const rc = i < 3 ? rowClass[i] : '';
+        lbHtml += `<div class="tv-lb-row ${rc}"><div class="tv-lb-pos ${pc}">${pos}</div><div class="tv-lb-name">${p.name}</div><div class="tv-lb-pts">${p.points}</div></div>`;
+      });
+    }
+    const lbEl = document.getElementById('tv-lb');
+    if (lbEl) lbEl.innerHTML = lbHtml;
+
+    const upEl = document.getElementById('tv-updated');
+    if (upEl) {
+      const t = new Date().toLocaleTimeString('da-DK', {hour:'2-digit',minute:'2-digit',second:'2-digit'});
+      upEl.textContent = 'Sidst opdateret ' + t;
+    }
+
+    // Tips table
+    const tvWrap = document.getElementById('tv-table-wrap');
+    if (tvWrap) {
+      if (!participants.length) {
+        tvWrap.innerHTML = '<div class="loading">Ingen deltagere endnu.</div>';
+      } else {
+        tvWrap.innerHTML = buildOversigtTable(participants, results, 'tv', 'tv-match-head', 'tv-name-head');
+      }
+    }
+  } catch(e) {
+    const lbEl = document.getElementById('tv-lb');
+    if (lbEl) lbEl.innerHTML = '<div style="color:var(--muted);font-size:13px;padding:8px">Kunne ikke hente data.</div>';
+  }
+}
+
+buildMatches();
+countdown();
+</script>
+</body>
+</html>
